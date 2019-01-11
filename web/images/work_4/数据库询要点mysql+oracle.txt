@@ -1,0 +1,32 @@
+==================================================================
+日期时间查询
+
+一、mysql 的 无论存储的string类型还是date类型都适用：
+查询方法1:SELECT * from `user` WHERE usedate BETWEEN '1981-01-01 00:00:00' AND '1981-12-31 23:59:59';
+查询方法2：select * from A where data like '2012-07-09%';
+
+
+
+二、oracle 的 如果在这里我们需要在这里去使用oracle的默认的日期的格式，有两种情况：
+
+情况一：存储的是date类型
+查询方法1:
+1）中文版的oracle数据库使用：1-1月-81
+2）英文版的oracle数据库使用：01-JAN-81
+SELECT * FROM EMP WHERE date BETWEEN '01-JAN-81' AND '31-DEC-81';（一般是这个英文版数据库）
+查询方法2：通配符除了可以使用在字符串中还可以使用日期(和mysql的第二种方法类似)
+SELECT * FROM EMP
+WHERE
+date LIKE '%81%';
+
+
+情况二：存储的是String类型
+查询方法1:SELECT * from `user` WHERE usedate BETWEEN '1981-01-01 00:00:00' AND '1981-12-31 23:59:59';
+查询方法2：select * from A where data like '2012-07-09%';
+
+=====================================================================
+分页查询
+一、mysql数据库：
+select * from emp limit 0 10;    limit 下标 页大小 ，  下标=（页数-1）*页大小
+
+二、oracle数据库：看-AAAAA-新新新-oracle的使用-oracle使用.doc-课堂练习三15题

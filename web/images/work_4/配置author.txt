@@ -1,0 +1,15 @@
+window－>preference－>java－>code    styple－>code Template -> Comments->Types
+
+      /**
+       * @author ${user}
+       * ${date} ${time}
+       * ${tags}
+     */
+
+改成(注意 需要时间就要添加)${date} ${time}
+
+      /**
+       * @author liang
+       * ${date} ${time}
+       * ${tags}
+     */

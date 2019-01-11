@@ -1,0 +1,31 @@
+1.
+c: 切换到某个盘
+dir  查看当前目录下的文件或者文件夹
+cd C:\NBMSClient\Shortcuts  进入指定目录
+cd.. 返回上一级目录
+md 140415 创建名字为140415的文件夹
+cd 140415 进入创建好的目录
+cd/ 回到根目录下
+
+  >1.txt 创建txt文件
+  >1.doc 创建doc文档
+
+rd 文件夹名 删除文件夹 必须是空的才可以删
+del 文件名.后缀  删除文件
+
+exit 退出命令行
+
+2.
+parth:这个配置是指定运行Java程序和编译执行的命令行位置
+mysql在cmd 运行不了解决方法：C:\Program Files\MySQL\MySQL Server 5.5\bin; 在环境变量后面加一个分号;
+cd C:\Program Files\MySQL\MySQL Server 5.5\bin  //切换到mysql安装的bin目录命令行下
+mysql -uroot -proot 就可以了
+
+
+JDK也一样在安装的目录bin下也是命令行
+
+3.先创建txt文件 后缀改成.java 放到某一目录 
+
+cmd 用Java命令 （javac 文件名.Java）编译 会出现一个.class编译后的字节码文件
+
+然后用java.exe执行

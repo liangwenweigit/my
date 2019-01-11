@@ -1,0 +1,14 @@
+tomcat 要设置这个要不然中文存图片路径会404错
+因为：Tomcat内置的对于get协议中的URL编码是ISO-8859-1，而中文文件的下载链接恰恰是通过get协议进行的
+   <Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" URIEncoding="UTF-8"/>
+id     要注意每张表的区分
+status 状态 名字也要注意
+order  是关键字
+get/set方法一定要有 特别是后期添加了字段后要+ 要不然数据库查出来的数据封装不到对象里面的
+image  设计存放的路径有些比较长的（存储长度一定要设置够）
+
+为了使开发工程中开发环境的一致性，建议设置以下两个地方：
+1.选择window->preferences->Java->Complier，JDK Compliance中Complier Compliance level 选择与你配置的JDK一致的版本，这里我选择1.6。
+2.选择window->preferences->MyEclipse Enterprise Workbench->Servers->Tomcat 6.x->JDK，在Tomcat JDK name中选择你配置好的JRE名称。

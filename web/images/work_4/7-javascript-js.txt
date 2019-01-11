@@ -1,0 +1,237 @@
+A 获取元素通过id获取的getElementById('btn');  也可以通过className来获取
+
+B javascript代码开发的时候会写在独立的js目录文件中 方便代码维护性 然后必须在head标签中导入 用script标签引入 如下
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/script.js" ></script>
+	</head>
+在js目录中写的xx.js文件 直接写就可以了
+如
+window.onload=function(){
+	var p =document.getElementById("checkall");//单一的一个对象
+	var aInputs= document.getElementsByTagName("input");//对象是类型数据
+	p.onclick = function(){
+		for (var=0;i<aInputs.length;i++) {
+			aIputs[i].checked="true";//修改标签属性
+
+C Ctrl+Shift+i 调试javascript代码或者找错误
+
+D .abc{cursor: pointer;} 光标  指针 设置CSS样式可以把鼠标变成指针
+
+E javascript代码可以写在页面任何位置（但是如果要嵌入在html文件中就要放在 script标签里）
+案例1：模拟126邮箱自动登录提示功能。(或者做预览图片显示)(这里js是写在标签事情属性中的)
+<label  onmousemove="document.getElementById('div1').style.display='block';"
+       onmouseout="document.getElementById('div1').style.display='none';">
+    <input type="checkbox"/>自动登录
+</label>
+
+
+案例2：收缩展开菜单
+</head>
+<script type="text/javascript">
+    window.onload=function(){
+      var obtn = document.getElementById('btn');
+      var oull = document.getElementById('ull');
+      obtn.onclick = function(){
+          if(oull.style.display == 'block'){
+              oull.style.display ='none';
+          }else{
+              oull.style.display ='block';
+          }
+      };
+    };
+</script>
+<body>
+    <div id="box">
+        <p id="btn">输入法</p>
+        <ul id="ull" style="display: block;">
+            <li><a href="#">手写</a>
+            <li><a href="#">拼音</a> 
+
+json是javascript的,alert();弹窗（重点：开发中接收外部数据 要先判断数据合适不合适类型 不合适提示用户 合适再进行逻辑处理）
+
+二、JS基础 js是弱类型语言 也要先定义再使用 js中判断俩个是否相当可以用=== 也可以用==（俩个==会进行隐式类型转换再比较）
+
+
+
+1、定义了没有赋值会是undefined类型 
+例如 var a; 这种就是undefined 因为定义 没赋值内存不知道分配多少存储空间
+
+2、变量的类型类型：
+typeof运算符 判断对象是什么类型
+用法：返回值
+常见的类型：number(包括整数和浮点数)\string\boolean\undefined\object\function等
+数组是Object类型
+
+3、数据类型强制类型转化（显式类型转换）
+例如：字符串转整数parseInt(),字符串转浮点数 parseFloat()
+
+4、JS命名规范
+类型前缀说明：
+数组类型：前缀为a;
+布尔类型：前缀为b;
+函数类型：前缀为 fn;
+整数类型：前缀为i;
+对象类型：前缀为o;
+正则表达式类型：前缀为s;
+变体变量:前缀为v;
+
+5、解决数据格式不正确的问题 例子 使用函数isNaN()；  NaN=no a number
+			obtn.onclick=function(){
+		var sum = parseInt(ot1.value)+parseInt(ot2.value)
+				if(isNaN(sum)){
+					alert("请输入正确格式的数据");
+				}else{
+				ot3.value=sum;
+
+6、隐式类型转换
+		var a = 12;
+		var b = '12';
+		alert(a == b); //true,（同类型直接比较）不同类型系统自动进行了数据类型转换（隐式转化）+再比较
+		alert(a === b); //false 比较的过程没有进行数据类型转换
+		alert(a + b); //1212 和java一样
+		alert(a - b)；//0，计算前进行了隐式转换 把字符串转换了数值 放向变了
+
+7、隔行取不同的颜色
+    window.onload=function(){
+        var oUl=document.getElementById('ul');
+        var aLi = document.getElementsByTagName('li');
+        for(var i=0;i<aLi.length;i++){
+            if(i%2==0){
+                aLi[i].style.background='red';
+            }else{
+                aLi[i].style.background='green';
+8、json表格的数据
+第一种	<script>
+	var json = {a:12,b:23,c:34}
+	alert(json.a);//访问json数据
+	alert(json.b);
+	alert(json.c);
+	</script>
+第二种	<script>
+	var json = {name:{firstName:'zhang',lastName:'san'},age:23}
+	alert(json.age);//访问jison数据
+	alert(json.name.firstName+json.name.lastName);
+	</script>
+使用循环遍历json格式数据 
+<script type="application/javascript">
+		var json={a : 12,b : 123,c: "abc"};
+		for(var i in json){
+			alert(json[i]);获取值和Java数组差不多     //alert(i),a  b c 只是获得名称
+		}
+	</script>
+
+9、函数(funciton) 在javascript中调用函数是通过函数名称调用的。调用的过程中是不会匹配参数的
+例子：带参数函数
+function f(a){}//要传入参数 和Java一样 在括号内用变量接收，但是不需要使用var(就好像Java不需要 int i中的int)
+f(1);//这样a 就等于1了；函数申明部分中，参数的部分是不能去使用var关键字的
+
+例子：函数function m(){}
+function m(){}  例如这个函数要调用就要  m();这样和Java一样调用
+
+例子：函数内部接收传过来的函数用arguments数组
+//			function f(){
+//				//可以去接收传递过来的参数吗？arguments数组来的。
+//				for(var i=0;i<arguments.length;i++){
+//					alert(arguments[i]);
+//				}
+//				
+//			}
+//			f(1,2,3);
+
+例子：返回值
+//如果在js中函数调用如果要返回值，则可以直接在函数内部去添加一个return语句进行返回就可以了
+//如果函数在调用的时候不需要有返回值，则在函数的内部不添加retrun就可以了
+			function sum(a,b){
+				return a+b;
+			}
+
+			alert(sum(1,2));
+
+
+10、获取行间样式
+		function css(){//约定我们传递的参数的次序，1）对象 2）CSS属性的名称=是字符串常量
+			return arguments[0].style[arguments[1]];
+		}
+		
+		window.onload=function(){
+			var oDiv = document.getElementById("div1");
+			var oBtn = document.getElementById("btn1");
+			oBtn.onclick = function(){
+				alert(css(oDiv,'width'));
+			}
+		}
+	</script>
+	<body>
+		<input type="button" id="btn1" value="获取样式"/>
+		<div id="div1" style="width: 200px;height: 200px;background: red;"></div>
+	</body>
+</html>
+
+<!--总结：
+		如果获取网页中的元素的CSS样式---行间样式方法：
+			对象名称.style[css属性名称];
+			满足IE,CHROME,FF
+11、获取非行间样式（有兼容性问题）
+			var oDiv = document.getElementById("div1");
+			var oBtn = document.getElementById("btn1");
+			oBtn.onclick = function() {
+				//alert(oDiv.currentStyle.width); //碰到浏览器的兼容问题了，IE浏览器下是可以访问的，但是在CHROME，ff是不可以被访问的。
+				//alert(getComputedStyle(oDiv,false).width);//是ff,chrome浏览器中生效的。
+				//alert(oDiv.currentStyle);
+				if(oDiv.currentStyle){//解决浏览器的兼容问题了
+					//就是IE下运行
+					alert(oDiv.currentStyle.width);
+				}else{
+					//就是在CHROME FF浏览器中运行
+					alert(getComputedStyle(oDiv,false).width);//getComputedStyle计算后的样式 因为样式要附到div上是经过一次计算后才附上的 false是一个无意义的参数 直接照抄就好
+				}
+12、数组（和Java唯一不同是的是数组的 长度 可以进行动态调整）
+数组的方法
+添加：
+Push(元素)：从尾部添加
+Unshift(元素)：从头部添加
+删除：
+Pop()：从尾部弹出数据元素
+Shift()：从头部弹出数据元素
+案例14：数组方法的演示1
+
+		<script>
+//			var arr=[1,2,3];
+			//alert(arr.length);
+			//修改数组的长度。
+//			arr.length=10;
+//			//alert(arr);//javascript中，数组的长度是可以根据用户的需要进行动态的调整的。
+//			//清空数组
+//			arr.length=0;
+//			alert(arr);
+//			添加数据元素
+//			arr.push(6);
+//			alert(arr);
+//			arr.unshift(6);
+//			删除数据元素
+//			arr.pop();
+//			arr.shift();
+//			alert(arr);
+
+//	数组中数据元素的排序
+//	var arrr = ["zhangsan","lisi","wangwu"];
+//		arrr.sort();//从小大道排序
+//		alert(arrr);
+
+		var arr = [11,22,1,34,56,13];
+		arr.sort(function(num1,num2){
+//			return num1-num2;//从小到大来进行拍训
+			return num2-num1;//从大到小进行排序
+		});
+		
+		alert(arr);
+
+
+
+
+
+
+
+

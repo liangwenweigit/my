@@ -1,0 +1,18 @@
+领域对象（domain）中的Date 要用java.util.Date 不能用sql包下的
+数据库返回结果：ResultSet.getDate(); 返回的是java.sql.Date
+存入数据库的：  PreparedStatement.setDate(int, Date); 其中第二个参数也是java.sql.Date
+
+domain中的util.Date 和 数据库中的 sql.Date之间的转换：
+*java.util.Date  转换成 java.sql.Date、Time、Timestamp
+	把util的Date转换成毫秒值
+	使用毫秒值创建sql的Date、Time、Timestamp
+ 例子：
+ java.util.Date date = new java.util.Date();
+ long l = date.getTime();
+ java.sql.Date sqlDate = new java.sql.Date(l);
+
+	
+*java.sql.Date、Time、Timestamp 转换成 java.util.Date
+	这一步不需要处理了：因为java.sql.Date是java.util.Date子类
+
+

@@ -1,0 +1,90 @@
+0)如果在tomcat配置是session序列化，那么多域对象也实现序列号接口，要不然session序列化了，再访问会丢失参数（对象） 空指针异常
+
+1)Web app root system property already set to different value: 'webapp.root'
+解决办法:按给的提示在web.xml里加上
+<context-param>  
+    <param-name>webAppRootKey</param-name>  
+    <param-value>myapp.root</param-value>  
+</context-param> 
+注意：myapp：为当前项目名 注：myapp.root,myapp为访问项目的名称
+
+2）Could not find a getter for xx  in class com.xx(在com.xx类里面xx没有找到get方法)
+解决办法：找到xx字段加上get，set方法
+
+3)OGNL错误：
+错误场景:
+条件1:struts2核心过滤器过滤url-pattern为*.action
+条件2:JSP页面中使用了struts标签
+条件3:通过url直接访问该JSP页面
+错误提示:
+The Struts dispatcher cannot be found.  This is usually caused by using Struts tags without the associated filter. Struts tags are only usable when the request has passed through its servlet filter, which initializes the Struts dispatcher needed for this tag. - [unknown location]
+解决方案:
+错误提示说的很清楚:该错误通常是由使用struts标签时未关联核心过滤器所致.Struts标签只有当请求通过核心过滤器时才能生效,因为Struts标签需要核心过滤器对其进行初始化.
+1.将web.xml中核心过滤器的映射改为/* <filter> <filter-name>struts2</filter-name> <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class></filter> <filter-mapping> <filter-name>struts2</filter-name> <url-pattern>/*</url-pattern></filter-mapping>
+
+4)jsp在JSTL标签库
+例子：
+   <% 
+   String[] strs = {"one","two"}; 
+   request.setAttribute("strs", strs);
+    %>
+    <c:forEach items="${strs }" var="st">
+    ${st}<!-- 输出 one tow --> 
+    </c:forEach>
+重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：
+items="${strs }"     注意strs后面有空格 没有可以可以，但是这样items="${strs } "  双引号前面有空格就不可以
+重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：重点：
+
+
+5)java.lang.ClassNotFoundException: com.mysql.jdbc.Driver 没有连接数据库的驱动包
+ClassNotFoundException:一般是没有导XX包导致的
+
+6)com.sun.mail.smtp.SMTPSendFailedException: 550 User not found: flt_it@163.com
+User not found:用户名未找到，解决方法 查看是否写错
+
+7)reloadable="true"; 开发阶段使用的 ；要是长时间打开没有重启 可能会爆异常，代码是没问题的，是c3p0连接池爆的异常
+  是正常的，重启就好（LifecycleBase.stop）
+
+8)CSS异常 导入的html或者jsp 打不开 打开不全（一般是不支持 把不支持的css去掉 更改）
+	/*background: linear-gradient(top, #68b12f, #50911e);*/
+
+9)ajax 405 错误：ajax 405 method not allowed ：HTTP method GET is not supported by this URL
+ 原因是：servlet 没有继承baseservlet
+
+10)org.apache.jasper.JasperException: javax.el.PropertyNotFoundException: Property 'image' not found on type java.lang.String
+
+最后发现。我小白了。。被myeclipse的报错给误导了。错的不是<c:out value="${item.image}"></c:out>这句话，而是 <c:forEach items="emaillist" var="item">。我居然写错了！应该是 <c:forEach items="${emaillist}" var="item">。试想，找不到emaillist变量，怎么可能会有emailaddress属性呢！
+
+11)Don't know how to iterate over supplied "items" in &lt;forEach&gt;问题的解决方法
+原因是因为：是在JSP文件中，JSTL的标签  <c:forEach> 里的items属性被赋予了一个无法遍历的对象。
+里面必须放可以遍历的对象 和for循环一样
+
+12)javax.el.properyNotFoundException   EL表达式异常  写错
+
+13)book_img/359012813D4D42E1858CB91B7F57A529_QQ鍥剧墖20180811125029.png 上传乱码问题
+解决：需要添加项目全站编码过滤器解决
+
+14)mybatis异常：配置文件不能有多余的东西 或者不正确的东西 有多余的没写对的都会爆错java.lang.IllegalArgumentException
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

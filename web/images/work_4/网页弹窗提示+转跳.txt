@@ -1,0 +1,54 @@
+1.弹窗：
+
+var sure = window.confirm("确定删除吗？")
+		if(sure){
+逻辑....
+}
+
+
+例子：'${category.cid}'重点 这里一定要+单引号  要不字符串参数传不过去
+    		  <a href="javascript:oncilcks('${category.cid}');">删除</a>
+    		</td>
+    	</tr>
+  </c:forEach> 
+   <script>
+   function oncilcks(str){
+	   var sure = window.confirm("确定删除吗？")
+		if(sure){
+			window.location.href="/bookstore/admin/AdminCategoryServlet?method=delete&cid="+str;
+
+
+
+2.转跳：
+
+//window.location.href="index.html";//js跳转页面
+document.contact_form.submit();//提交 //这里注意表单一定要有名字 name="contact_form"
+
+//提交也可以这样提交 按钮提交表单（黑马技术）：
+//给表单设置一个id 例子：document.getEleeemntbyid("id").submit();
+
+
+3.弹窗：
+<a onclick="return confirm('您真要删除该分类吗?')" href="<c:url value='/admin/AdminCategoryServlet?method=delete&cid=${c.cid }'/>">删除</a>
+
+
+4.表单post请求 url后面不能加参数 切记切记：
+ 例子：
+  <body>
+    <h1>修改分类</h1>
+    <form name="contact_form" action="/bookstore/admin/AdminCategoryServlet}" method="post">
+        <input type="hidden" name="method" value="update" />
+    	<input type="hidden" name="cid" value="${category.cid}" />
+    	分类名称：<input type="text" name="cname" value="${category.cname}"/>
+    	<input id="btn" type="button" value="修改分类"/>
+    </form>
+  </body>
+  <script type="text/javascript">
+  window.onload=function(){
+  var sure = window.confirm("确定修改吗?")
+  if(sure){
+	  document.contact_form.submit();
+	}
+  }
+  </script>
+

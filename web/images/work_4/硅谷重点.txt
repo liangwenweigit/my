@@ -1,0 +1,148 @@
+1.成员变量中用static修饰的 是存在于静态域 只有一个的变量  一个修改 其他对象全部会修改
+ 例如：static int ticket = 100; //三个窗口对象售票例子  但是存在线程安全问题
+2.final 修饰的类不能被继承 因为它是最后的
+  final 修饰的方法 不能被重写 因为它是最后的了 但是会被继承
+  final 修饰的属性 就是常量了 不能变了不能是变量 习惯用大写 而且是在定义的时候赋值 或者在 对象构造里面/之前初始化
+用static final修饰的=全局常量
+3.多态表现在 方法的重载和重写  类是具有相同属性的实体的抽象 类是对象的集合 对象是类的实例化
+4.单例设计模式：私有化构造方法，在静态初始化块中初始化
+5.抽象类 不能实例化  必须由abstract修饰
+  抽象类 里面的抽象方法也要用abstract修饰
+  抽象类有构造器（凡是类都有构造器） 
+abstract不能用来修饰属性 构造器，不能和private final static 一起使用
+6.冒泡排序 2层循环 最外层控制着比较的轮数
+7.接口没有构造器
+  什么是接口：接口是抽象方法 和 常量值 的集合
+8.模板设计模式：抽象类作为多个子类的通用模板，确定的部分方法实现，不确定的不实现 让子类实现
+
+9.反射调的是空参的构造方法 所以类必须要写空参构造方法
+		Class clazz = Person.class;
+		Person p = (Person) clazz.newInstance();
+		Field f = clazz.getField("name");
+		f.setAccessible(true);
+		//方法  需要方法名 参数.class类型 有多少个写多少个
+		Method m1 = clazz.getMethod("display", String.class);
+		m1.invoke(p, "12111");//调用、
+		
+		Field[] fs = clazz.getDeclaredFields();//private的也可以获得
+		Method[] ms = clazz.getDeclaredMethods();//一样
+10.多线程（并发处理）
+
+继承：启动线程
+PrimeThread p = new PrimeThread(143);
+     p.start();
+
+实现接口：启动线程
+PrimeRun p = new PrimeRun(143);
+     new Thread(p).start();//线程1
+     Thread t = new Thread(p);  t.start();//线程2 相当于2个线程了
+     用这种方法做售票窗口 票不用static修饰，只要保证这么多线程操作的是一个对象就保证数据统一了
+     但是存在线程安全问题
+线程安全问题：
+
+方法一：(实现方式 和继承方式 都使用字符串作为锁)
+        代码块加锁 synchronized("字符串对象"){}
+        字符串对象一定要定义在外面
+class Windows extends Thread {
+	static int ticket = 100;
+	String job = "job";
+
+	@Override
+	public void run() {
+		while (true) {
+			synchronized (job) {//这里的锁要加在while里面 加在外面的话 就只有一个线程操作完全部才出去的了 导致别的线程取票取不到
+				if (ticket > 0) {
+					try {
+						sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					System.out.println(ticket--);
+				} else {
+					break;
+				}
+			}
+		}
+	}
+}
+
+方法二： 方法加锁
+
+实现Thread的方式：synchronizd锁对象就是this对象 因为只有一个对象 
+只是PrimeRun p = new PrimeRun(143);
+    Thread t1 = new Thread(p).start();//只是new的线程 不是对象  所以确保了对象是同一个
+    Thread t2 = new Thread(p).start();
+public synchronizd void shwo(){} 锁对象是调用方法的类
+锁原理：一个线程执行该方法的时候 其他线程要在外面等候 等其执行完才再竞争执行
+        
+继承runnable的方式：还是要使用上面 代码块加锁 synchronized("字符串对象"){} 方法加锁是不可以的
+                    因为每次new的都是不同对象，方法锁对象是this当前对象
+
+11.单例设计模式存在线程安全问题：解决：
+class Person{
+	private static Person person;
+	public static String job = "job";
+	static{
+		person = new Person();
+	}
+	
+	private Person(){}
+	
+	public static Person getPerson(){
+		synchronized (job) {
+			if (person == null) {
+				person = new Person();
+			}
+		}
+		return person;
+		
+	}
+}
+
+12.释放线程锁
+ wait();方法会释放，方式块执行完毕会释放，抛异常会释放
+ sleep();方法不会释放的注意。
+
+13.死锁，当交叉使用相同的参数 锁对象不同时 很容易死锁，要避免
+14.线程通讯 wait notify notifyAll这三个方法只能在synchronized内使用 否则爆异常
+
+15.动态代理与AOP-面向切面(没写完)
+*创建接口+方法 
+*接口实现类+实现方法//也就是被代理类
+*创建
+class MyInvocationHandler implements InvocationHandler{
+  Object object;//被代理类对象的声明
+  public void setObject(Object object){
+       this.pbject = object;
+}
+   //重写invoke方法
+  public Object invoke-------{
+    
+   H h = new H();
+   h.方法一 写死的方法
+   Object s =method.invoke(object,args);//这个是动态的
+   h.方法二 写死的方法
+   return s;
+}
+}
+*创建一个类包含2方法（也就是增强的方法）
+class H{
+ public void fun1{
+ syso...方法一
+}
+ public void fun2{
+ syso...方法二
+}
+}
+*创建被代理类对象
+ class MyProxy{
+   public statuc Object getPoxyInstance(Object object){
+   
+}
+
+}
+
+16.网络编程
+
+
+

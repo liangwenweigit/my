@@ -1,0 +1,30 @@
+
+====================项目编码=================
+1，修改一类文件的编码方式：Windows--Preferences--General--Content Types--选中text下的Java Source File在下方的Default encoding 输入 GBK 点击 Update  
+2，修改整个工作空间的编码方式：Windows--Preferences--General--Workspace---将Text file encoding改为? UTF8? 【或者是GBK）----->根据所导入工程的编码格式来改】  
+3，修改单个工程的编码方式：右键点击项目--Preferences--Resource--将Text file encoding改为UTF-8
+
+==========
+sql text文件修改编码：另存为修改为：utf-8，在放到项目里肯定不会乱码
+
+
+
+
+
+
+
+
+
+
+
+================日期工具格式===================
+yyyy-MM-dd HH:mm:ss
+
+1.字符串转日期 
+
+2.日期转字符串
+
+3.关于查询出来的12:15:50.0   后面.0去掉问题
+select  to_char(time字段名,'yyyy-mm-dd') 
+1，在sql里用to_char(date,'YYYY-MM-DD')
+2，在java里用new SimpleDateFormat("yyyy-MM-dd").format(date) 

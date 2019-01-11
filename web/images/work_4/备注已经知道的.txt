@@ -1,0 +1,7 @@
+这三个是一起用的 有依赖关系
+
+1.里面有不适用的baseServlet
+2.dbutil的重写类 dao的 	private QueryRunner qr = null;  qr = new TxQueryRunner();
+  其中还有dao用到的连接mysql数据库的的工具类都封装好了
+
+3.这里用的连接池是c3p0

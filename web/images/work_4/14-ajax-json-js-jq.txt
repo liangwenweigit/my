@@ -1,0 +1,145 @@
+12:32 2018/6/24一、什么是Ajax?(这个是javascript中的ajax,在jquery框架中对ajax进行了封装
+
+======javascript中
+Async JavaScript and XML
+Ajax不是一种技术。实际上，它由几种蓬勃发展的技术以新的强大方式组合而成。Ajax包含：
+	基于XHTML和CSS标准的表示；
+	使用Document Object Model进行动态显示和交互；
+	使用XMLHttpRequest与服务器进行异步通信；
+	使用JavaScript绑定一切
+
+jquery使用ajax要导入 	<script type="text/javascript" src="js/ajax.js"></script>
+
+txt文件字符集编码乱码解决方法：使用记事本打开这个文件-另存为-把编码E 选择为utf-8
+
+例子：
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>l.html</title>
+    <meta charset="utf-8">
+	<script type="text/javascript" src="js/ajax.js"></script>
+  </head>
+  <body>
+    <button id="btn">获取</button>
+  </body>
+  <script type="text/javascript">
+  var obtn = document.getElementById("btn");
+  obtn.onclick=function(){
+  ajax("/ajax/data.txt?time="+new Date(), function(str){//添加new Date阻止缓存(原理：每次请求的字符串不一样会认为请求不一样会自动到服务器去请求 而不是找本地缓存)
+  alert(str)
+  }, function(){ 
+  alert("网络错误")
+  })
+ }
+  </script>
+</html>
+
+二、校验
+
+校验用户输入的字符串是否为0 是否格式正确  用js验证 验证完再到服务器请求
+  var oText = document.getElementById("username");
+  var oSpan = document.getElementById("showinfo");
+  oText.onblur = function(){
+  var usernames = oText.value.trim();
+  if(usernames==0){
+  oSpan.innerHTML="用户名不能为空";
+ return;//直接return终止掉程序 而不用else  return;//直接return终止掉程序 而不用else  return;//直接return终止掉程序 而不用else
+  }
+  ajax(
+  "/ajax/Ss?username="+usernames,
+  function(str){
+  oSpan.innerHTML=str;
+  },
+  function(){
+  alert("网络连接失败")
+  })
+  }  
+
+三、数据格式
+
+1、javascript中
+JSON格式JSON（JavaScript Object  Notation）：
+JSON是JavaScript原生格式，这意味着在JavaScript中处理JSON数据不需要任何特殊的API或工具包。
+SON 用冒号(而不是等号)来赋值。每一条赋值语句用逗号分开。整个对象用大括号封装起来。可用大括号分级嵌套数据。
+
+例子：js解析访问json格式字符串
+Person{id;name;}//person类
+
+[{id:123,name:"zhangsan"},{id:234,name:"lisi"}]
+解析后是数组： person[0],person[1]
+person[0].id  person[0].name 来访问
+
+{id:123,name:"lisi"}
+person.id persion.name 来访问
+
+
+解析使用的函数：var person = eval("("+json+")");
+例子：(一个对象)和(数组)的例子
+		btn.onclick = function() {
+			ajax("/ajax/JsonServlet?time=" + new Date(), function(str) {
+				//获取是一个JSON格式对象
+				//eval函数去解析的是一个对象对应的json字符串那么就需要手动添加(),如果是一个集合的json字符串那么这个时候就不需要去手动的添加任何东西了
+				//var person = eval("("+ str +")");
+				//var s = "id=" + person.id + ",name=" + person.name +",sex=" + person.sex + ",address=" + person.address;
+				//span.innerHTML=s;
+				var persons = eval(str);//数组
+				var s = "";//记录生成出来的HTML代码
+				//判断获取的数据是否是有元素的，如果有就产生表格，如果没有的话给用户一个提示。
+				if (persons.length == 0) {//要先判断有没有数据 没有就不做下面的操作
+					s = "没有查询到数据";
+				} else {
+					s = "<table border='1'>";
+					//使用循环来产生每行的对应HTML代码
+					for (var i = 0; i < persons.length; i++) {
+						s += "<tr><td>" + persons[i].id + "</td><td>"
+								+ persons[i].name + "</td><td>"
+								+ persons[i].sex + "</td><td>"
+								+ persons[i].address + "</td></tr>";
+					}
+					s += "</table>";
+				}
+				
+				span.innerHTML=s;
+
+2、JSON java要生成json格式的字符串要用到三个jar包
+jackson-annotations-2.4.2.jar
+jackson-core-2.4.2.jar
+jackson-databind-2.4.2.jar
+
+然后直接new 出来就行了
+Person{int id; String name;}//person类
+ObjectMapper mapper = new ObjectMapper();
+String json = mapper.writeValueAsString(对象);
+
+============jquery中
+Jquery中的Ajax
+jQuery 对 Ajax 操作进行了封装, 在 jQuery 中最底层的方法时 $.ajax(),  第三层是 $.getScript() 和 $.getJSON()
+
+jquery中用得最多的是 $.ajax();
+
+$.ajax({
+type:"post",//type请求方式post/get
+url:"/ajax/data.text",//请求路径
+data:{time:new Date()},//这个参数必须也是json格式 这就是一个参数 必须是json格式
+success:function(data){},//请求成功回调的参数
+error:function(){}//请求失败回调的参数
+
+});//里面要的是json格式的参数要用{}中括号括起来，
+例子：
+    <script type="text/javascript">
+    	$("#username").bind("blur",function(){
+    		$.ajax({
+    			type:"post",
+    			data:{username:$("#username").val()},//jq中获取text的value值
+    			url:"/ajax/RegistSerlvet",
+    			success:function(data){
+    				$("#showinfo").html(data);
+    			},
+    			error:function(){
+    				alert("请求失败");
+    			}
+    		});
+    	});
+    	
+    </script>

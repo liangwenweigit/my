@@ -1,0 +1,206 @@
+/** {word-wrap:break-word; word-break:break-all; padding: 0; margin: 0;}*/
+* {padding: 0; margin: 0;}
+ul, li, a {text-decoration: none; list-style: none;}
+a {color: #0397ff;}
+body {background: #edf4ff; width: 100%; height: 100%;}
+@font-face {
+    font-family: 华康娃娃;
+    src: url('../font/hkww.ttf');
+}
+
+.content {margin: 0 auto; background: url(../images/bg.jpg) no-repeat; background-size: 100% 100%;  overflow: hidden; position: relative;}
+.flex {display: flex; display: -webkit-flex; align-items: center;}
+
+.content .zero {width: 100%; height: 100%; position: absolute; z-index: 9999;}
+.content .zero .loading {width: 100%; height: auto; font-size: 1.5vh; color: #8b271c; bottom: 0; text-align: right; position: absolute;}
+
+/**************************************************************** 第一版 */
+.content .one {height: 100%; display: flex; display: -webkit-flex; align-items: flex-start;}
+.content .one .iceCsy_pic { height: 35%; width: 100%; position: relative;}
+
+/* 字体 */
+.content .one .iceCsy_pic .font {height: 100%; width: 50%; left: 25%; top: 100%; position: absolute;}
+.content .one .iceCsy_pic .font iceCsy{width: 100%; height: 100%;}
+.content .one .iceCsy_pic .font p{color: #8b7508; font-family: 华康娃娃; letter-spacing: 2px; text-align: center; font-size: 4vh; font-weight: 900;}
+.content .one .iceCsy_pic .font .font_csy {font-size: 4vh; background: #8b271c; padding: 1vh 5px; font-weight: 300; color: #fff; display: block; width: 60%; margin-left: 17.5%; margin-top: 10%; text-align: center; font-family: 华康娃娃; height: 16%; line-height: 100%;}
+/* 字体end */
+
+/* 爱心 */
+.content .one .iceCsy_pic .font .heart {width: 2vh;height: 2vh; position: relative; animation-name: shake; animation-duration: .9s; animation-iteration-count: infinite; margin: 10% 43%;}
+.content .one .iceCsy_pic .font .heart a {width: 100%; height: 100%; position: absolute; background: #FF5A5A; animation-name: shadow; animation-duration: .9s; animation-iteration-count: infinite; display: inline-block;}
+.content .one .iceCsy_pic .font .heart .topLeft, .topRight {border-radius: 100px 100px 0 0;}
+.content .one .iceCsy_pic .font .heart .topLeft {transform: translate(-1.19vh, 0) rotate(-45deg);}
+.content .one .iceCsy_pic .font .heart .topRight {transform: translate(1.19vh, 0) rotate(45deg);}
+.content .one .iceCsy_pic .font .heart .bottom {transform: translate(0vh, 1.28vh) rotate(45deg) scale(.9, .9);}
+
+/* 定义动画 */
+@keyframes shake {
+    from {transform: scale(.9, .9);}
+    to {transform: scale(1.1, 1.1);}
+}
+@keyframes shadow {
+    to {box-shadow: 0px 0px 30px #FF5A5A;}
+}
+/* 爱心end */
+/**************************************************************** 第一版end */
+
+/**************************************************************** 第二版(初遇见) */
+.content .two {height: 100%; display: flex; display: -webkit-flex; align-items: flex-start;}
+.content .two .font_write {height: 100%; width: 70%; position: relative; left: 15%; top: 25%; opacity: 0;
+    transition: All 1s ease-in-out;
+    -webkit-transition: All 1s ease-in-out;
+    -moz-transition: All 1s ease-in-out;
+    -o-transition: All 1s ease-in-out;
+}
+.content .two .font_write p {width: 100%; font-size: 2vh; font-family: 微软雅黑; text-align: left; height: 10%; color: #333;}
+.content .two .font_write p:first-child {margin-top: 20%;}
+.content .two .font_write p span {width: 100%; font-size: 3.5vh; color: #8b271c; font-family: 微软雅黑; text-align: left; height: 5%;}
+.content .two .show_pic {height: 100%; width: 100%;}
+.content .two .show_pic .center_content {height: 65%; width: 100%; position: relative; left: 20%;
+    transition: All 1s ease-in-out;
+    -webkit-transition: All 1s ease-in-out;
+    -moz-transition: All 1s ease-in-out;
+    -o-transition: All 1s ease-in-out;
+}
+.content .two .show_pic .center_content img {height: auto; position: absolute; width: 100%; left: -20%; display: none; top: 0%;}
+.content .two .show_pic .center_content .span {position: absolute; height: 100%; width: 10%;}
+.content .two .show_pic .center_content .span span {display: block; width: 4vh; height: 4vh; position: absolute; border-radius: 50%; background: #333;
+    transition: All .5s ease-in-out;
+    -webkit-transition: All .5s ease-in-out;
+    -moz-transition: All .5s ease-in-out;
+    -o-transition: All .5s ease-in-out;
+} /* top: -70%; */
+.content .two .show_pic .center_content .span1 {left: 165%; top: 130%;} /* top: 50%; left: -40%; 2vh 2vh*/
+.content .two .show_pic .center_content .span2 {left: 800%; top: 100%;} /* top: 50%; left: 300%; 2vh 2vh*/
+.content .two .show_pic .center_content .span3 {left: 5%; top: -40%;} /* top: 25%; left: 250%; 2vh 2vh*/
+/**************************************************************** 第二版end */
+
+/**************************************************************** 第二版(2)(初遇见) */
+.content .two_2 {height: 100%; display: flex; display: -webkit-flex; align-items: flex-start;}
+.content .two_2 .font_write {height: 100%; width: 70%; position: relative; left: 15%; top: 25%; opacity: 0;
+    transition: All 1s ease-in-out;
+    -webkit-transition: All 1s ease-in-out;
+    -moz-transition: All 1s ease-in-out;
+    -o-transition: All 1s ease-in-out;
+}
+.content .two_2 .font_write p {width: 100%; font-size: 2vh; font-family: 微软雅黑; text-align: left; height: 10%; color: #333;}
+.content .two_2 .font_write p:first-child {margin-top: 20%;}
+.content .two_2 .font_write p span {width: 100%; font-size: 3.5vh; color: #8b271c; font-family: 微软雅黑; text-align: left; height: 5%;}
+.content .two_2 .show_pic {height: 100%; width: 100%;}
+.content .two_2 .show_pic .center_content {height: 65%; width: 100%; position: relative; left: 20%;
+    transition: All 1s ease-in-out;
+    -webkit-transition: All 1s ease-in-out;
+    -moz-transition: All 1s ease-in-out;
+    -o-transition: All 1s ease-in-out;
+}
+.content .two_2 .show_pic .center_content img {height: auto; position: absolute; width: 100%; left: -20%; display: none; top: 0%;}
+.content .two_2 .show_pic .center_content .span {position: absolute; height: 100%; width: 10%;}
+.content .two_2 .show_pic .center_content .span span {display: block; width: 4vh; height: 4vh; position: absolute; border-radius: 50%; background: #333;
+    transition: All .5s ease-in-out;
+    -webkit-transition: All .5s ease-in-out;
+    -moz-transition: All .5s ease-in-out;
+    -o-transition: All .5s ease-in-out;
+} /* top: -70%; */
+.content .two_2 .show_pic .center_content .span1 {left: -265%; top: 75%;} /* top: 45%; left: 35%; 2vh 2vh*/
+.content .two_2 .show_pic .center_content .span2 {left: 580%; top: 130%;} /* top: 55%; left: 380%; 2vh 2vh*/
+.content .two_2 .show_pic .center_content .span3 {left: 600%; top: -40%;} /* top: 30%; left: 300%; 2vh 2vh*/
+/**************************************************************** 第二版(2)end */
+
+/**************************************************************** 第三版(都是你) */
+.content .three {width: 100%; height: 100%; position: relative;}
+.content .three .left_bottom {position: absolute; width: 380%; height: 44%; top: 28%; left: 40%; opacity: 0;}
+.content .three .left_bottom div {height: 100%; width: 10%; float: left; margin-right: 0.4%; box-shadow: 4px 1px 4px #aaa;}
+.content .three .left_bottom div img {width: 94%; height: 94%; padding: 2.5% 3%; border-radius: 7px; opacity: 0;}
+.content .three .left_bottom div .rotate180 {transform: rotate(180deg);}
+.content .three .font_show {position: absolute; font-size: 3vh; letter-spacing: 1px; opacity: 0;
+    transition: All 2s ease-in-out;
+    -webkit-transition: All 2s ease-in-out;
+    -moz-transition: All 2s ease-in-out;
+    -o-transition: All 2s ease-in-out;
+}
+.content .three .font_show span {font-size: 5vh; color: #8b271c;}
+.content .three .font1 {bottom: 5%; left: 10%;}
+.content .three .font2 {left: 5%; top: 10%;}
+.content .three .font3 {bottom: 5%; right: 10%;}
+.content .three .d_red {background: #FF90A5;}
+.content .three .green {background: #83AF9B;}
+.content .three .pink {background: #FC9D9A;}
+.content .three .org {background: #F9CDAD;}
+.content .three .d_green {background: #8BB495;}
+.content .three .red {background: #AF6767;}
+.content .three .block {background: #C9BA83;}
+.content .three .blue {background: #71969F;}
+.content .three .yellow {background: #F0DE8E;}
+.content .three .start {width: 100%; height: 100%; position: absolute; left: 0%;}
+.content .three .start .color {width: 100%; height: 100%; position: relative; left: 10%;}
+.content .three .start .color div {position: relative;}
+.content .three .start .color .small_div { width: 8%; height: 8%; box-shadow: 1px 1px 0px #aaa; float: left; top: 46%; margin-right: 1%;}
+.content .three .start .color .font {font-size: 7vh; color: #fff; top: 43%;}
+.content .three .start .beautiful{top: 28%; left: 53%; width: 45%; position: absolute;}
+.content .three .start .beautiful img{width: 85%; height: 85%;}
+/**************************************************************** 第三版end */
+
+/**************************************************************** 第四版 */
+.content .four {width: 100%; height: 100%; position: relative;}
+.content .four .left {width: 100%; height: 100%;}
+.content .four .left .left_pic {width: 65%; height: 100%;}
+.content .four .left .left_pic img {position: absolute; height: auto;}
+.content .four .left .left_pic .pic1 {width: 70%; left: 56%; top: 135%; transform: skew(-65deg, 28deg) rotate(2deg); height: 34%; box-shadow: 3px 2px 3px #555;}
+.content .four .left .left_pic .pic2 {width: 49%; left: 62%; top: -65%; transform: skew(6deg, -3deg) rotate(-3deg);}
+.content .four .left .left_pic .pic3 {width: 24%; left: -30%; top: -28%; transform: skew(0deg, 10deg) rotate(-11deg);}
+.content .four .left .left_pic .pic4 {width: 72%; left: 102%; top: 50%; transform: rotate(-4deg); box-shadow: 2px 3px 3px #555;}
+.content .four .left .left_pic .pic5 {width: 15%; left: -17%; top: 30%; box-shadow: 3px 3px 3px #555;}
+.content .four .left .left_pic .pic6 {width: 40%; left: 20%; top: 120%; transform: rotate(14deg); border-radius: 5px;}
+.content .four .left .left_pic .pic7 {width: 109%; left: -6%; transform: rotate(8deg); border-radius: 5px; height: 111%; top: 0%; display: none;}
+.content .four .left .left_pic .pic8 {width: 30%; left: 12%; top: 120%; transform: skew(-2deg, -11deg) rotateX(40deg);}
+
+.content .four .left .right_font {width: 33%; height: 100%; margin-left: 2%; opacity: 0;
+    transition: All 2s ease-in-out;
+    -webkit-transition: All 2s ease-in-out;
+    -moz-transition: All 2s ease-in-out;
+    -o-transition: All 2s ease-in-out;
+}
+.content .four .left .right_font p {font-size: 2vh; color: #444; font-family: Tahoma;}
+.content .four .left .right_font p:first-child {font-size: 3.5vh; color: #2db5ec; margin-bottom: 2%; margin-top: 90%;}
+/**************************************************************** 第四版end */
+
+/**************************************************************** 第五版 */
+.content .five {width: 100%; height: 100%; position: relative;}
+.content .five .left {width: 100%; height: 100%;}
+.content .five .left .left_pic {width: 65%; height: 100%;}
+.content .five .left .left_pic img {position: absolute; height: auto;}
+.content .five .left .left_pic .pic1 {width: 20%; height: 16%; transform: skew(56deg, -25deg) rotate(4deg); top: 109%; left: 70%; box-shadow: 0px 1px 2px #444;}
+.content .five .left .left_pic .pic2 {width: 30%; height: 30%; transform: skew(1deg, 6deg) rotate(-22deg); top: -40%; left: 30%;}
+.content .five .left .left_pic .pic3 {width: 23%; height: 25%; transform: rotate(-32deg); top: -34%; left: 80%;}
+.content .five .left .left_pic .pic4 {width: 25%; height: 24%; transform: rotate(14deg); top: 106%; left: 17%; box-shadow: 0px 1px 2px #444;}
+.content .five .left .left_pic .pic5 {width: 10%; top: 55%; left: 102%; box-shadow: 1px 1px 2px #444;}
+.content .five .left .left_pic .pic6 {width: 30%; height: 25%; transform: skew(13deg, 17deg); top: 109%; left: 60%;}
+.content .five .left .left_pic .pic7 {width: 104%; left: 0%; transform: rotate(-8deg); border-radius: 5px; height: 111%; top: 0%; display: none;} /**/
+.content .five .left .left_pic .pic8 {width: 33%; height: 25%; transform: skew(-7deg, 20deg) rotate(-6deg); top: 120%; left: 60%;}
+
+.content .five .left .right_font {width: 33%; height: 100%; margin-left: 10%; opacity: 0;
+    transition: All 2s ease-in-out;
+    -webkit-transition: All 2s ease-in-out;
+    -moz-transition: All 2s ease-in-out;
+    -o-transition: All 2s ease-in-out;
+}
+.content .five .left .right_font p {font-size: 2vh; color: #444; font-family: Tahoma;}
+.content .five .left .right_font p:first-child {font-size: 3.5vh; color: #2db5ec; margin-bottom: 2%; margin-top: 90%;}
+/**************************************************************** 第五版end */
+
+/**************************************************************** 最后一版(iceCsy真是太好了) */
+.content .end {height: 100%; width: 100%; overflow: hidden;}
+.content .end div {height: 0%; width: 100%; position: absolute; background: #fff;}
+.content .end div .font {position: absolute; height: auto; text-align: center; opacity: 0;}
+.content .end .top {border-bottom: 2px solid #000; top: -2px;}
+.content .end .top .font {bottom: 0;}
+.content .end .top .font span:first-child {font-size: 3vh;}
+.content .end .top .font span:last-child {font-size: 4vh; color: #FE5442;}
+.content .end .bottom {border-top: 1.5px solid #000; bottom: -2px;}
+.content .end .bottom .font {top: 0; position: relative;}
+.content .end .bottom .font span {font-size: 2vh;}
+.content .end .bottom .font .s {font-size: 4vh; color: #c03734;}
+.content .end .bottom .end {height: 100%; text-align: center; font-size: 1.2vh; opacity: 0; font-family: 微软雅黑;}
+.content .end .bottom .end p {height: 10%;}
+.content .end .bottom .end p:first-child {margin-top: 12%;}
+/**************************************************************** 最后一版end */

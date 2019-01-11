@@ -1,0 +1,3 @@
+安装CentOS7 是和 gitlab-ce-10.8.2-ce.0.el7.x86_64 装来一起用的
+
+CentOS7 里面防火墙和6不一样 7的指令： service firewalld stop/start

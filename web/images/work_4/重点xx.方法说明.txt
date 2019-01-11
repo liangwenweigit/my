@@ -1,0 +1,51 @@
+1.ServletActionContext.getServletContext()
+
+编程时:注意是方法才有这个 方法.(XXX);  分析。方法名+.+（需要的参数）+返回值（void是没有返回值）+那个类里的方法
+
+实心绿点+A右上角代表的是abstract抽象方法
+
+实心绿点+C右上角是constructor构造方法
+
+实心绿点+红S右上角是static静态的方法
+
+实心绿点+C在中间是class类
+
+实心紫色+I在中间是interface接口
+
+空心绿点是属性
+
+红色方块+红S右上角是 静态的属性
+
+红S+蓝F是 static final 是常量
+
+2.另外注意这个：hibernate使用 
+SQLQuery s = createSQLQuery("select * from user")   
+List<Object[]> list = s.list();返回的是List集合 里面存放的是Object数组
+
+Ljava.lang.Object：里面存放的是Object类型的数组
+
+所以要遍历2次：
+for(Object os : list){
+   for(Object o : os){
+Sysout.out.println(o);
+
+}}
+
+例子:
+查询	@Test
+	public void testFindAll(){
+		Session s = HibernateUtil.openSession();
+		Transaction tx = s.beginTransaction();
+		//使用session对象，获取一个查询对象Query
+		SQLQuery sqlquery = s.createSQLQuery("select * from cst_customer");
+		//使用sqlquery对象获取结果集 //Ljava.lang.Object：里面存放的是Object类型的数组
+		List<Object[]> list = sqlquery.list();//返回的是List集合 里面存放的是Object数组
+		for(Object[] os : list){//第一次遍历集合 第二次遍历拿出来的数组
+			System.out.println("------------数组中的内容-----------");
+			for(Object o : os){
+				System.out.println(o);
+			}
+		}
+		tx.commit();
+		s.close();
+	}
