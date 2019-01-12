@@ -11,6 +11,12 @@ public class User implements Serializable{
     private Integer id;
     private String username;
     private String password;
+    private String two;
+    private String o;
+    private String one;
+    private String a;
+    private String b;
+
 
     public User() {
     }
