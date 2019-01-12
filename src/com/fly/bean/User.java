@@ -14,6 +14,22 @@ public class User implements Serializable{
     private String two;
     private String one;
 
+    public String getTwo() {
+        return two;
+    }
+
+    public void setTwo(String two) {
+        this.two = two;
+    }
+
+    public String getOne() {
+        return one;
+    }
+
+    public void setOne(String one) {
+        this.one = one;
+    }
+
     public User() {
     }
 
